@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'widgets/rutas.dart';
+import 'widgets/voucher.dart';
 import 'widgets/orden.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Ordenes(),
-        //'/Ordenes': (context) => const Ordenes(),
+        '/voucher': (context) => const Voucher(),
       },
     );
   }

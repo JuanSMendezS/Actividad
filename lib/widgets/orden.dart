@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:actividad/models/VoucherScreemArguments.dart';
 import 'package:flutter/material.dart';
 
 class Ordenes extends StatefulWidget {
@@ -8,8 +11,6 @@ class Ordenes extends StatefulWidget {
 }
 
 class _OrdenesState extends State<Ordenes> {
-  String nombres = '';
-  String direccion = '';
   String textocheck1 = 'Pepperoni';
   String textocheck2 = 'Cebollas';
   bool valuepep = false;
@@ -127,7 +128,42 @@ class _OrdenesState extends State<Ordenes> {
         ),
         ElevatedButton(
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/voucher', arguments: {});
+            if (txtNombres.text.trim().isEmpty) {
+              return;
+            } else if (textDireccion.text.trim().isEmpty) {
+              return;
+            } else if (tamano.trim().isEmpty) {
+              return;
+            } else {
+              double total = 0;
+              List<String> topping = [];
+
+              if (valuepep) {
+                total = total + 3000;
+                topping.add("Pepperoni");
+              }
+
+              if (valueceb) {
+                total = total + 3000;
+                topping.add("Cebollas");
+              }
+
+              switch (tamano.trim()) {
+                case "8":
+                  total = total + 24000;
+                  break;
+                case "10":
+                  total = total + 28000;
+                  break;
+                case "12":
+                  total = total + 30000;
+                  break;
+              }
+
+              Navigator.pushNamed(context, '/voucher',
+                  arguments: VoucherScreemArguments(txtNombres.text.trim(),
+                      textDireccion.text.trim(), tamano, topping, total));
+            }
           },
           child: const Text(
             'Ordenar',
