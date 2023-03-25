@@ -59,7 +59,7 @@ class _OrdenesState extends State<Ordenes> {
               },
             ),
             RadioListTile(
-              title: const Text('10 pulgadas'),
+              title: const Text('10 pulgadas -'),
               value: '10',
               groupValue: tamano,
               onChanged: (value) {
